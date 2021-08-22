@@ -1,5 +1,5 @@
 /** Class that determines whether or not a year is a leap year.
- *  @author YOUR NAME HERE
+ *  @author Chatzh
  */
 public class LeapYear {
 
@@ -11,6 +11,17 @@ public class LeapYear {
             System.out.printf("%d is a leap year.\n", year);
         } else {
             System.out.printf("%d is not a leap year.\n", year);
+        }
+    }
+    
+    /** If @param  year is leap year, return true, otherwise return false. */
+    public static boolean isLeapYear(int year) {
+        if (year % 400 == 0) {
+            return true;
+        } else if (year % 4 == 0 && year % 100 != 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 
