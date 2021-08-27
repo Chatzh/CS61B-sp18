@@ -1,5 +1,5 @@
 public class LinkedListDeque<T> {
-    private class DequeNode {
+    private class DequeNode<T> {
         T item;
         DequeNode prev;
         DequeNode next;
@@ -15,20 +15,11 @@ public class LinkedListDeque<T> {
     private int size;
 
     public LinkedListDeque() {
-        sentinel = new DequeNode((T) "null", null, null);
+        sentinel = new DequeNode(63, null, null);
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
         size = 0;
     }
-
-    /*
-    public LinkedListDeque(T item) {
-        sentinel = new DequeNode((T) "null", null, null);
-        DequeNode n = new DequeNode(item, sentinel, sentinel);
-        sentinel.prev = n;
-        sentinel.next = n;
-        size = 1;
-    } */
 
     public void addFirst(T item) {
         DequeNode oldFirst = sentinel.next;
@@ -43,7 +34,6 @@ public class LinkedListDeque<T> {
         DequeNode n = new DequeNode(item, oldLast, sentinel);
         oldLast.next = n;
         sentinel.prev = n;
-
         size++;
     }
 
@@ -71,7 +61,7 @@ public class LinkedListDeque<T> {
         if (size == 0) {
             return null;
         }
-        T item = sentinel.next.item;
+        T item = (T) sentinel.next.item;
         sentinel.next = sentinel.next.next;
         sentinel.next.next.prev = sentinel;
         size--;
@@ -82,7 +72,7 @@ public class LinkedListDeque<T> {
         if (size == 0) {
             return null;
         }
-        T item = sentinel.prev.item;
+        T item = (T) sentinel.prev.item;
         sentinel.prev = sentinel.prev.prev;
         sentinel.prev.prev.next = sentinel;
         size--;
@@ -97,14 +87,14 @@ public class LinkedListDeque<T> {
         for (int i = 0; i < index; i++) {
             tmp = tmp.next;
         }
-        return tmp.item;
+        return (T) tmp.item;
     }
 
     public T getRecursive(int index) {
         if (size == 0) {
             return null;
         } else if (index == 0) {
-            return sentinel.next.item;
+            return (T) sentinel.next.item;
         } else {
             LinkedListDeque<T> tmp = this;
             tmp.sentinel = tmp.sentinel.next;
