@@ -68,4 +68,12 @@ public class LinkedListDequeTestMy {
         assertEquals(java.util.Optional.of(1), java.util.Optional.of(a.get(0)));
         assertEquals(java.util.Optional.of(2), java.util.Optional.of(a.get(1)));
     }
+
+    @Test
+    public void testGetRecursive() {
+        LinkedListDeque<Integer> a = new LinkedListDeque<>(1);
+        a.addLast(2);
+        assertEquals(java.util.Optional.of(1), java.util.Optional.of(a.getRecursive(0)));
+        assertEquals(java.util.Optional.of(2), java.util.Optional.of(a.getRecursive(1)));
+    }
 }
