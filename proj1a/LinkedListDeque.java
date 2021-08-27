@@ -1,10 +1,10 @@
 public class LinkedListDeque<T> {
-    private class DequeNode{
-        public T item;
-        public DequeNode prev;
-        public DequeNode next;
+    private class DequeNode {
+        T item;
+        DequeNode prev;
+        DequeNode next;
 
-        public DequeNode(T i, DequeNode p, DequeNode n) {
+        DequeNode(T i, DequeNode p, DequeNode n) {
             item = i;
             prev = p;
             next = n;
@@ -21,20 +21,21 @@ public class LinkedListDeque<T> {
         size = 0;
     }
 
+    /*
     public LinkedListDeque(T item) {
         sentinel = new DequeNode((T) "null", null, null);
         DequeNode n = new DequeNode(item, sentinel, sentinel);
         sentinel.prev = n;
         sentinel.next = n;
         size = 1;
-    }
+    } */
 
     public void addFirst(T item) {
         DequeNode oldFirst = sentinel.next;
         DequeNode n = new DequeNode(item, sentinel, oldFirst);
         oldFirst.prev = n;
         sentinel.next = n;
-        size ++;
+        size++;
     }
 
     public void addLast(T item) {
@@ -43,7 +44,7 @@ public class LinkedListDeque<T> {
         oldLast.next = n;
         sentinel.prev = n;
 
-        size ++;
+        size++;
     }
 
     public boolean isEmpty() {
