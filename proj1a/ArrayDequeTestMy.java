@@ -111,7 +111,7 @@ public class ArrayDequeTestMy {
         b.addFirst(7);
         b.addLast(8);
         assertEquals(java.util.Optional.of(7), java.util.Optional.of(b.get(0)));
-        assertEquals(java.util.Optional.of(8), java.util.Optional.of(b.get(8)));
+        assertEquals(java.util.Optional.of(8), java.util.Optional.of(b.get(7)));
     }
 
     @Test

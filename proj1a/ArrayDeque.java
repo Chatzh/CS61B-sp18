@@ -8,9 +8,9 @@ public class ArrayDeque<T> {
     }
 
     private DequeNode sentinel;
-    private int size;
-    private int nextFirst;
-    private int nextLast;
+    private int size,
+                nextFirst,
+                nextLast;
 
     public ArrayDeque() {
         sentinel = new DequeNode();
@@ -123,11 +123,10 @@ public class ArrayDeque<T> {
             return null;
         }
 
-        if (nextFirst < nextLast) {
-            return sentinel.array[nextFirst + index];
-        } else {
-            int rest = sentinel.array.length - 1 - nextFirst;
-            return sentinel.array[index - rest];
+        index += nextFirst + 1;
+        if (index >= sentinel.array.length) {
+            index -= sentinel.array.length;
         }
+        return sentinel.array[index];
     }
 }
