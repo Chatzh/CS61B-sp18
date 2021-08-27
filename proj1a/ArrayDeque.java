@@ -123,11 +123,11 @@ public class ArrayDeque<T> {
             return null;
         }
 
-        /* Check if the index touch the bound. */
-        if (nextFirst + index + 1 > sentinel.array.length) {
-            return sentinel.array[index - (sentinel.array.length - nextFirst - 1)];
+        if (nextFirst < nextLast) {
+            return sentinel.array[nextFirst + index];
         } else {
-            return sentinel.array[nextFirst + index + 1];
+            int rest = sentinel.array.length - 1 - nextFirst;
+            return sentinel.array[index - rest];
         }
     }
 }
