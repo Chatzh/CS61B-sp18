@@ -100,6 +100,18 @@ public class ArrayDequeTestMy {
         assertEquals(java.util.Optional.of(1), java.util.Optional.of(a.get(0)));
         a.addLast(2);
         assertEquals(java.util.Optional.of(2), java.util.Optional.of(a.get(1)));
+
+        ArrayDeque<Integer> b = new ArrayDeque<>();
+        b.addFirst(1);
+        b.addLast(2);
+        b.addFirst(3);
+        b.addLast(4);
+        b.addFirst(5);
+        b.addFirst(6);
+        b.addFirst(7);
+        b.addLast(8);
+        assertEquals(java.util.Optional.of(7), java.util.Optional.of(b.get(0)));
+        assertEquals(java.util.Optional.of(8), java.util.Optional.of(b.get(8)));
     }
 
     @Test

@@ -19,18 +19,18 @@ public class ArrayDeque<T> {
         size = 0;
     }
 
-    public void resize() {
+    private void resize(int i) {
         int length = sentinel.array.length;
-        if (size == length) {
+        if (size + i > length) {
             T[] n = (T[]) new Object[size * 2];
             System.arraycopy(sentinel.array, 0, n, 0, nextLast);
             System.arraycopy(sentinel.array, nextLast, n, size + nextLast, size - nextLast);
             sentinel.array = n;
             nextFirst = size + nextLast - 1;
-        } else if (size > 2 && size < length / 2 - 2) {
+        } else if (size + i < length / 4 - 2) {
             T[] n = (T[]) new Object[length / 2];
-            System.arraycopy(sentinel.array, nextFirst + 1, n, 1, size);
-            //System.arraycopy(sentinel.array, nextFirst, n, length - nextLast, size - nextLast);
+            System.arraycopy(sentinel.array, nextFirst + 1, n, 1, size - nextLast);
+            System.arraycopy(sentinel.array, 0, n, 2, nextLast);
             sentinel.array = n;
             nextFirst = 0;
             nextLast = size + 1;
@@ -38,7 +38,7 @@ public class ArrayDeque<T> {
     }
 
     public void addFirst(T item) {
-        this.resize();
+        this.resize(1);
         sentinel.array[nextFirst] = item;
 
         /* Check if the pointer touch the border. */
@@ -52,7 +52,7 @@ public class ArrayDeque<T> {
     }
 
     public void addLast(T item) {
-        this.resize();
+        this.resize(1);
         sentinel.array[nextLast] = item;
 
         /* Check if the pointer touch the border. */
@@ -81,7 +81,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        this.resize();
+        this.resize(-1);
         if (size == 0) {
             return null;
         }
@@ -100,7 +100,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
-        this.resize();
+        this.resize(-1);
         if (size == 0) {
             return null;
         }
@@ -125,7 +125,7 @@ public class ArrayDeque<T> {
 
         /* Check if the index touch the border. */
         if (nextFirst + index + 1 > sentinel.array.length) {
-            return sentinel.array[nextLast - size + index - 1];
+            return sentinel.array[nextLast - 1];
         } else {
             return sentinel.array[nextFirst + index + 1];
         }
