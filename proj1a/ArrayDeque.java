@@ -27,6 +27,19 @@ public class ArrayDeque<T> {
             System.arraycopy(sentinel.array, nextLast, n, size + nextLast, size - nextLast);
             sentinel.array = n;
             nextFirst = size + nextLast - 1;
+        } else if (length > 8 && size + i < length / 4) {
+            T[] n = (T[]) new Object[length / 2];
+
+            if (nextFirst + size + 1 < length) {
+                System.arraycopy(sentinel.array, nextFirst + 1, n, 1, size);
+            } else {
+                int firstPartLength = length - nextFirst - 1;
+                System.arraycopy(sentinel.array, nextFirst + 1, n, 1, firstPartLength);
+                System.arraycopy(sentinel.array, 0, n, firstPartLength + 1, size - firstPartLength);
+            }
+            sentinel.array = n;
+            nextFirst = 0;
+            nextLast = size + 1;
         }
     }
 
