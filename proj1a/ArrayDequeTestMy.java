@@ -116,7 +116,7 @@ public class ArrayDequeTestMy {
 
     @Test
     public void testMore() {
-        LinkedListDeque<Integer> a = new LinkedListDeque<>();
+        ArrayDeque<Integer> a = new ArrayDeque<>();
         a.addLast(0);
         a.addLast(1);
         a.addFirst(2);

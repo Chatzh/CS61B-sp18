@@ -41,7 +41,7 @@ public class ArrayDeque<T> {
         this.resize(1);
         sentinel.array[nextFirst] = item;
 
-        /* Check if the pointer touch the border. */
+        /* Check if the pointer touch the bound. */
         if (nextFirst == 0) {
             nextFirst = sentinel.array.length - 1;
         } else {
@@ -55,7 +55,7 @@ public class ArrayDeque<T> {
         this.resize(1);
         sentinel.array[nextLast] = item;
 
-        /* Check if the pointer touch the border. */
+        /* Check if the pointer touch the bound. */
         if (nextLast == sentinel.array.length - 1) {
             nextLast = 0;
         } else {
@@ -81,12 +81,12 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        this.resize(-1);
         if (size == 0) {
             return null;
         }
+        this.resize(-1);
 
-        /* Check if the pointer touch the border. */
+        /* Check if the pointer touch the bound. */
         if (nextFirst == sentinel.array.length - 1) {
             nextFirst = 0;
         } else {
@@ -100,12 +100,12 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
-        this.resize(-1);
         if (size == 0) {
             return null;
         }
+        this.resize(-1);
 
-        /* Check if the pointer touch the border. */
+        /* Check if the pointer touch the bound. */
         if (nextLast == 0) {
             nextLast = sentinel.array.length - 1;
         } else {
@@ -123,9 +123,9 @@ public class ArrayDeque<T> {
             return null;
         }
 
-        /* Check if the index touch the border. */
+        /* Check if the index touch the bound. */
         if (nextFirst + index + 1 > sentinel.array.length) {
-            return sentinel.array[nextLast - 1];
+            return sentinel.array[index - (sentinel.array.length - nextFirst - 1)];
         } else {
             return sentinel.array[nextFirst + index + 1];
         }
