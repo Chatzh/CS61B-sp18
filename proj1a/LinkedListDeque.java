@@ -1,5 +1,5 @@
 public class LinkedListDeque<T> {
-    private class DequeNode<T> {
+    private class DequeNode {
         T item;
         DequeNode prev;
         DequeNode next;
@@ -15,7 +15,7 @@ public class LinkedListDeque<T> {
     private int size;
 
     public LinkedListDeque() {
-        sentinel = new DequeNode(63, null, null);
+        sentinel = new DequeNode((T) "null", null, null);
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
         size = 0;
@@ -38,10 +38,7 @@ public class LinkedListDeque<T> {
     }
 
     public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        }
-        return false;
+        return size == 0;
     }
 
     public int size() {
@@ -61,7 +58,7 @@ public class LinkedListDeque<T> {
         if (size == 0) {
             return null;
         }
-        T item = (T) sentinel.next.item;
+        T item = sentinel.next.item;
         sentinel.next = sentinel.next.next;
         sentinel.next.prev = sentinel;
         size--;
@@ -72,7 +69,7 @@ public class LinkedListDeque<T> {
         if (size == 0) {
             return null;
         }
-        T item = (T) sentinel.prev.item;
+        T item = sentinel.prev.item;
         sentinel.prev = sentinel.prev.prev;
         sentinel.prev.next = sentinel;
         size--;
@@ -87,19 +84,19 @@ public class LinkedListDeque<T> {
         for (int i = 0; i < index; i++) {
             tmp = tmp.next;
         }
-        return (T) tmp.item;
+        return tmp.item;
     }
 
     public T getRecursive(int index) {
         if (size == 0) {
             return null;
         } else if (index == 0) {
-            return (T) sentinel.next.item;
+            return sentinel.next.item;
         } else {
-            LinkedListDeque<T> tmp = this;
-            tmp.sentinel = tmp.sentinel.next;
-            tmp.size--;
-            return tmp.getRecursive(index - 1);
+            this.sentinel = this.sentinel.next;
+            T result = this.getRecursive(index - 1);
+            this.sentinel = this.sentinel.prev;
+            return result;
         }
     }
 }

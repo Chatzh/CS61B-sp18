@@ -27,10 +27,10 @@ public class LinkedListDequeTestMy {
     @Test
     public void testIsEmpty() {
         LinkedListDeque<Integer> a = new LinkedListDeque<>();
-        assertEquals(true, a.isEmpty());
+        assertTrue(a.isEmpty());
 
         a.addFirst(1);
-        assertEquals(false, a.isEmpty());
+        assertFalse(a.isEmpty());
     }
 
     @Test
@@ -73,7 +73,17 @@ public class LinkedListDequeTestMy {
         a.addLast(1);
         assertEquals(java.util.Optional.of(1), java.util.Optional.of(a.getRecursive(0)));
         a.addLast(2);
-        assertEquals(java.util.Optional.of(2), java.util.Optional.of(a.getRecursive(1)));
+        a.addLast(0);
+        a.addLast(1);
+        a.addFirst(2);
+        a.addLast(3);
+
+        /* a = [2, 1, 2, 0, 1, 3] */
+        assertEquals(java.util.Optional.of(1), java.util.Optional.of(a.getRecursive(4)));
+        assertEquals(java.util.Optional.of(0), java.util.Optional.of(a.getRecursive(3)));
+        assertEquals(java.util.Optional.of(2), java.util.Optional.of(a.getRecursive(2)));
+        assertEquals(java.util.Optional.of(1), java.util.Optional.of(a.getRecursive(1)));
+        assertEquals(java.util.Optional.of(2), java.util.Optional.of(a.getRecursive(0)));
     }
 
     @Test
