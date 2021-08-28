@@ -44,12 +44,13 @@ public class ArrayDeque<T> {
         T[] n = (T[]) new Object[newCapacity];
         for (int j = 0; j < size; j++) {
             n[j] = sentinel.array[index];
+            index = increment(index);
         }
 
         sentinel.array = n;
         capacity = newCapacity;
         nextFirst = capacity - 1;
-        nextLast = 0;
+        nextLast = size;
 
     }
 
