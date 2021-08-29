@@ -8,15 +8,15 @@ A:
 
 Q: What's something you felt proud of in your code, if anything?
 
-A:
+A: The resize method take one integer parameter to represent resize up or down.
 
 Q: What's something that was particularly inelegant in your code, if anything?
 
-A:
+A: The resize method, adds and removes method.
 
 Q: What did you learn by talking to your partner about writing ArrayDeque?
 
-A:
+A: Convert special cases to general case, decrease the repeat of my code.
 
 Q: What do you wish you would have known before writing ArrayDeque, if anything?
 
@@ -24,7 +24,7 @@ A:
 
 Q: If you wrote ArrayDeque again, what would you do differently, if anything?
 
-A:
+A: Make helper function to reduce redundant code in adds and removes method, rewrite resize method in a better way. (Actually already rewrite it.)
 
 -----
 
@@ -36,11 +36,11 @@ A:
 
 Q: What's something you felt proud of in your code, if anything?
 
-A:
+A: I think it's one of the simplest code.
 
 Q: What's something that was particularly inelegant in your code, if anything?
 
-A:
+A: None.
 
 Q: What did you learn by talking to your partner about writing LinkedListDeque?
 
@@ -52,7 +52,7 @@ A:
 
 Q: If you wrote LinkedListDeque again, what would you do differently, if anything?
 
-A:
+A: Maybe some "this" keyword is redundant and I will delete it.
 
 -----
 
@@ -60,4 +60,4 @@ Meta:
 
 Q: Did you like this design review process? Anything we should do differently next time?
 
-A: 
+A: Yes. I can learn something I didn't know before and improve my code skill and thinking.
