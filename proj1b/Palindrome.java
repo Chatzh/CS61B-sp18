@@ -23,8 +23,7 @@ public class Palindrome {
     }
 
     public boolean isPalindrome(String word, CharacterComparator cc) {
-        Palindrome p = new Palindrome();
-        Deque<Character> wordDeque = p.wordToDeque(word);
+        Deque wordDeque = wordToDeque(word);
         return isPalindromeHelper(wordDeque, cc);
     }
 
