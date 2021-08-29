@@ -24,7 +24,7 @@ public class ArrayDeque<T> {
     /** Check this.Arraydeque needs to resize or not.
      *  If it needs to resize, then resize it, otherwise do nothing.
      * @param i stands for the calling method is increasing the size of
-     *          this.Arraydeque or decreasing its size.
+     *          this.Arraydeque or decreasing.
      *          Positive means increasing, negative means decreasing.
      */
     private void resize(int i) {
@@ -38,7 +38,7 @@ public class ArrayDeque<T> {
         }
 
         /* Copy all items form this.ArrayDeque to new ArrayDeque.
-           secPos: index of first item, destPos: 0, length: size.
+           srcPos: index of first item, destPos: 0, length: size.
          */
         int index = increment(nextFirst);
         T[] n = (T[]) new Object[newCapacity];
