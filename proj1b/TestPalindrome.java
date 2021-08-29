@@ -23,5 +23,12 @@ public class TestPalindrome {
         assertFalse(palindrome.isPalindrome("cat"));
         assertTrue(palindrome.isPalindrome("madam"));
         assertTrue(palindrome.isPalindrome("madamadam"));
+
+        OffByN offByN = new OffByN(1);
+        assertTrue(palindrome.isPalindrome("", offByN));
+        assertTrue(palindrome.isPalindrome("a", offByN));
+        assertTrue(palindrome.isPalindrome("flake", offByN));
+        assertTrue(palindrome.isPalindrome("fLaKe", offByN));
+        assertTrue(palindrome.isPalindrome("&a%", offByN));
     }
 }
