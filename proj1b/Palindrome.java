@@ -21,4 +21,20 @@ public class Palindrome {
                   last = (char) d.removeLast();
         return first.equals(last) && isPalindromeHelper(d);
     }
+
+    public boolean isPalindrome(String word, CharacterComparator cc) {
+        Palindrome p = new Palindrome();
+        Deque<Character> wordDeque = p.wordToDeque(word);
+        return isPalindromeHelper(wordDeque, cc);
+    }
+
+    /** A helper function of isPalindrome. */
+    private boolean isPalindromeHelper(Deque d, CharacterComparator cc) {
+        if (d.size() <= 1) {
+            return true;
+        }
+        char first = (char) d.removeFirst(),
+                last = (char) d.removeLast();
+        return cc.equalChars(first, last) && isPalindromeHelper(d, cc);
+    }
 }
