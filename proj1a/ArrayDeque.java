@@ -51,7 +51,6 @@ public class ArrayDeque<T> {
         capacity = newCapacity;
         nextFirst = capacity - 1;
         nextLast = size;
-
     }
 
     public void addFirst(T item) {
