@@ -33,7 +33,7 @@ public class Palindrome {
             return true;
         }
         char first = (char) d.removeFirst(),
-                last = (char) d.removeLast();
+             last = (char) d.removeLast();
         return cc.equalChars(first, last) && isPalindromeHelper(d, cc);
     }
 }
