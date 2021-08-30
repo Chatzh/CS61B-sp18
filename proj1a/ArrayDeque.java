@@ -21,47 +21,15 @@ public class ArrayDeque<T> {
         size = 0;
     }
 
-    /** Check this.Arraydeque needs to resize or not.
-     *  If it needs to resize, then resize it, otherwise do nothing.
-     * @param i stands for the calling method is increasing the size of
-     *          this.Arraydeque or decreasing.
-     *          Positive means increasing, negative means decreasing.
-     */
-    private void resize(int i) {
-        int newCapacity;
-        if (size + i > capacity) {
-            newCapacity = capacity * 2;
-        } else if (capacity > 8 && size + i < capacity / 4) {
-            newCapacity = capacity / 2;
-        } else {
-            return;
-        }
-
-        /* Copy all items form this.ArrayDeque to new ArrayDeque.
-           srcPos: index of first item, destPos: 0, length: size.
-         */
-        int index = increment(nextFirst);
-        T[] n = (T[]) new Object[newCapacity];
-        for (int j = 0; j < size; j++) {
-            n[j] = sentinel.array[index];
-            index = increment(index);
-        }
-
-        sentinel.array = n;
-        capacity = newCapacity;
-        nextFirst = capacity - 1;
-        nextLast = size;
-    }
-
     public void addFirst(T item) {
-        resize(1);
+        checkSize(1);
         sentinel.array[nextFirst] = item;
         nextFirst = decrement(nextFirst);
         size++;
     }
 
     public void addLast(T item) {
-        resize(1);
+        checkSize(1);
         sentinel.array[nextLast] = item;
         nextLast = increment(nextLast);
         size++;
@@ -86,7 +54,7 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        resize(-1);
+        checkSize(-1);
 
         nextFirst = increment(nextFirst);
         T item = sentinel.array[nextFirst];
@@ -99,7 +67,7 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        resize(-1);
+        checkSize(-1);
 
         nextLast = decrement(nextLast);
         T item = sentinel.array[nextLast];
@@ -134,5 +102,37 @@ public class ArrayDeque<T> {
             return capacity - 1;
         }
         return --i;
+    }
+
+    /** Check this.Arraydeque needs to resize or not.
+     *  If it needs to resize, then call resize() to resize it, otherwise do nothing.
+     * @param i stands for the calling method is increasing the size of
+     *          this.Arraydeque or decreasing.
+     *          Positive means increasing, negative means decreasing.
+     */
+    private void checkSize(int i) {
+        if (size + i > capacity) {
+            resize(capacity * 2);
+        } else if (capacity > 8 && size + i < capacity / 4) {
+            resize(capacity / 2);
+        }
+    }
+
+    /** Copy all items from this.ArrayDeque to new ArrayDeque with @param newCapacity,
+     *  then reset nextFirst, nextLast, capacity to correct value,
+     *  make sentinel point to the new ArrayDeque.
+     */
+    private void resize(int newCapacity) {
+        int index = increment(nextFirst);
+        T[] n = (T[]) new Object[newCapacity];
+        for (int j = 0; j < size; j++) {
+            n[j] = sentinel.array[index];
+            index = increment(index);
+        }
+
+        sentinel.array = n;
+        capacity = newCapacity;
+        nextFirst = capacity - 1;
+        nextLast = size;
     }
 }
