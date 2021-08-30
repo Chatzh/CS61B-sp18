@@ -18,7 +18,7 @@ public class Palindrome {
             return true;
         }
         char first = (char) d.removeFirst(),
-                  last = (char) d.removeLast();
+             last = (char) d.removeLast();
         return first == last && isPalindromeHelper(d);
     }
 
