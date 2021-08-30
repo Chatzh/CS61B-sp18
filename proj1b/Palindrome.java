@@ -17,9 +17,9 @@ public class Palindrome {
         if (d.size() <= 1) {
             return true;
         }
-        Character first = (char) d.removeFirst(),
+        char first = (char) d.removeFirst(),
                   last = (char) d.removeLast();
-        return first.equals(last) && isPalindromeHelper(d);
+        return first == last && isPalindromeHelper(d);
     }
 
     public boolean isPalindrome(String word, CharacterComparator cc) {
