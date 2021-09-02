@@ -11,34 +11,34 @@ public class TestArrayDequeGold {
     }
 
     private void testN(int n) {
-        String[] operation = new String[n];
-        String message = "";
+        String operation,
+               message = "";
 
         for (int i = 0; i < n; i++) {
             double randomNumber = StdRandom.uniform();
             Integer stuNumber, expNumber;
 
             if (randomNumber < 0.2) {
-                operation[i] = "addFirst(" + i + ")";
+                operation = "addFirst(" + i + ")";
                 stuArray.addFirst(i);
                 expArray.addFirst(i);
             } else  if (randomNumber < 0.5) {
-                operation[i] = "addLast(" + i + ")";
+                operation = "addLast(" + i + ")";
                 stuArray.addLast(i);
                 expArray.addLast(i);
             } else if (randomNumber < 0.7) {
-                operation[i] = "removeFirst()";
+                operation = "removeFirst()";
                 stuNumber = stuArray.removeFirst();
                 expNumber = expArray.removeFirst();
-                assertEquals(message + operation[i], expNumber, stuNumber);
+                assertEquals(message + operation, expNumber, stuNumber);
             } else {
-                operation[i] = "removeLast()";
+                operation = "removeLast()";
                 stuNumber = stuArray.removeLast();
                 expNumber = expArray.removeLast();
-                assertEquals(message + operation[i], expNumber, stuNumber);
+                assertEquals(message + operation, expNumber, stuNumber);
             }
 
-            message += operation[i] + "\n";
+            message += operation + "\n";
         }
     }
 }
