@@ -19,11 +19,11 @@ public class TestArrayDequeGold {
             Integer stuNumber, expNumber;
 
             if (randomNumber < 0.2) {
-                operation[i] = "addFirst()";
+                operation[i] = "addFirst(" + i + ")";
                 stuArray.addFirst(i);
                 expArray.addFirst(i);
             } else  if (randomNumber < 0.5) {
-                operation[i] = "addLast()";
+                operation[i] = "addLast(" + i + ")";
                 stuArray.addLast(i);
                 expArray.addLast(i);
             } else if (randomNumber < 0.7) {
