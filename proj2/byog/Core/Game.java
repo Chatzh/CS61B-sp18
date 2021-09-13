@@ -28,11 +28,21 @@ public class Game {
      * @return the 2D TETile[][] representing the state of the world
      */
     public TETile[][] playWithInputString(String input) {
-        // TODO: Fill out this method to run the game using the input passed in,
+        // Fill out this method to run the game using the input passed in,
         // and return a 2D tile representation of the world that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
 
-        TETile[][] finalWorldFrame = null;
-        return finalWorldFrame;
+        long seed = getSeed(input);
+        MapGenerator map = new MapGenerator(WIDTH, HEIGHT, seed);
+
+        // ter.initialize(WIDTH, HEIGHT);
+        // ter.renderFrame(map.world);
+
+        return map.world;
+    }
+
+    /** Convert @param input to numeric seed and return it. */
+    private long getSeed(String input) {
+        return Long.parseLong(input.substring(1, input.length() - 1));
     }
 }
