@@ -1,10 +1,9 @@
 package hw2;
 
 import edu.princeton.cs.introcs.StdRandom;
+import edu.princeton.cs.introcs.StdStats;
 
 public class PercolationStats {
-    private double mean;
-    private double stddev;
     private double[] xt;
     private int times;
 
@@ -27,33 +26,15 @@ public class PercolationStats {
     }
 
     public double mean() {
-        mean = 0;
-        for (double x: xt) {
-            mean += x;
-        }
-        mean /= times;
-        return mean;
+        return StdStats.mean(xt);
     }
-
     public double stddev() {
-        mean();
-        stddev = 0;
-        for (double x: xt) {
-            stddev += (x - mean) * (x - mean);
-        }
-        stddev /= (times - 1);
-        return stddev;
+        return StdStats.stddev(xt);
     }
-
     public double confidenceLow() {
-        stddev();
-        double dev = Math.sqrt(stddev);
-        return mean - 1.96 * dev / Math.sqrt(times);
+        return mean() - 1.96 * Math.sqrt(stddev() / times);
     }
-
     public double confidenceHigh() {
-        stddev();
-        double dev = Math.sqrt(stddev);
-        return mean + 1.96 * dev / Math.sqrt(times);
+        return mean() + 1.96 * Math.sqrt(stddev() / times);
     }
 }
