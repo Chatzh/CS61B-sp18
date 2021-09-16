@@ -1,6 +1,6 @@
 package hw2;
 
-import java.util.Random;
+import edu.princeton.cs.introcs.StdRandom;
 
 public class PercolationStats {
     private double[] xt;
@@ -13,12 +13,11 @@ public class PercolationStats {
 
         times = T;
         xt = new double[times];
-        Random rand = new Random();
         for (int i = 0; i < times; i++) {
             Percolation p = pf.make(N);
             while (!p.percolates()) {
-                int row = rand.nextInt(N);
-                int col = rand.nextInt(N);
+                int row = StdRandom.uniform(N);
+                int col = StdRandom.uniform(N);
                 p.open(row, col);
             }
             xt[i] = p.numberOfOpenSites() / (double) (N * N);
