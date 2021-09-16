@@ -33,7 +33,8 @@ public class PercolationStats {
         for (double x: xt) {
             mean += x;
         }
-        return mean / times;
+        mean /= times;
+        return mean;
     }
 
     public double stddev() {
@@ -42,7 +43,8 @@ public class PercolationStats {
         for (double x: xt) {
             stddev += (x - mean) * (x - mean);
         }
-        return stddev / (times - 1);
+        stddev /= (times - 1);
+        return stddev;
     }
 
     public double confidenceLow() {
