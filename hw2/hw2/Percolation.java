@@ -46,9 +46,11 @@ public class Percolation {
                 wqu.union(top, p);
             }
 
-            // bottom row cases, connect to virtual bottom site
-            if (row == grid.length - 1 && isFull(row, col)) {
-                wqu.union(p, bottom);
+            // check if is percolates
+            for (int i = 0; i < grid.length; i++) {
+                if (isFull(grid.length - 1, i)) {
+                    wqu.union(xyTo1D(grid.length - 1, i), bottom);
+                }
             }
         }
     }
