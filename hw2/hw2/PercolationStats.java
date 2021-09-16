@@ -5,16 +5,14 @@ import edu.princeton.cs.introcs.StdStats;
 
 public class PercolationStats {
     private double[] xt;
-    private int times;
 
     public PercolationStats(int N, int T, PercolationFactory pf) {
         if (N <= 0 || T <= 0) {
             throw new java.lang.IllegalArgumentException("N or T is less than 1");
         }
 
-        times = T;
-        xt = new double[times];
-        for (int i = 0; i < times; i++) {
+        xt = new double[T];
+        for (int i = 0; i < T; i++) {
             Percolation p = pf.make(N);
             while (!p.percolates()) {
                 int row = StdRandom.uniform(N);
@@ -32,9 +30,9 @@ public class PercolationStats {
         return StdStats.stddev(xt);
     }
     public double confidenceLow() {
-        return mean() - 1.96 * Math.sqrt(stddev() / times);
+        return mean() - 1.96 * Math.sqrt(stddev() / xt.length);
     }
     public double confidenceHigh() {
-        return mean() + 1.96 * Math.sqrt(stddev() / times);
+        return mean() + 1.96 * Math.sqrt(stddev() / xt.length);
     }
 }
