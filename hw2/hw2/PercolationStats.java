@@ -3,9 +3,6 @@ package hw2;
 import java.util.Random;
 
 public class PercolationStats {
-    private double mean;
-    private double stddev;
-
     private double[] xt;
     private int times;
 
@@ -29,32 +26,32 @@ public class PercolationStats {
     }
 
     public double mean() {
-        mean = 0;
+        double mean = 0;
         for (double x: xt) {
             mean += x;
         }
-        mean /= times;
-        return mean;
+        return mean / times;
     }
 
     public double stddev() {
-        mean();
-        stddev = 0;
+        double mean = mean();
+        double stddev = 0;
         for (double x: xt) {
             stddev += (x - mean) * (x - mean);
         }
-        stddev /= (times - 1);
-        return stddev;
+        return stddev / (times - 1);
     }
 
     public double confidenceLow() {
-        stddev();
+        double mean = mean();
+        double stddev = stddev();
         double dev = Math.sqrt(stddev);
         return mean - 1.96 * dev / Math.sqrt(times);
     }
 
     public double confidenceHigh() {
-        stddev();
+        double mean = mean();
+        double stddev = stddev();
         double dev = Math.sqrt(stddev);
         return mean + 1.96 * dev / Math.sqrt(times);
     }
