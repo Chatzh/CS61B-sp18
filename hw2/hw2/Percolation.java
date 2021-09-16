@@ -47,12 +47,11 @@ public class Percolation {
             }
 
             // check if is percolates
-            for (int i = 0; i < grid.length; i++) {
-                if (percolates()) {
-                    break;
-                }
-                if (isFull(grid.length - 1, i)) {
-                    wqu.union(xyTo1D(grid.length - 1, i), bottom);
+            if (isFull(row, col) && !percolates()) {
+                for (int i = 0; i < grid.length; i++) {
+                    if (isFull(grid.length - 1, i)) {
+                        wqu.union(xyTo1D(grid.length - 1, i), bottom);
+                    }
                 }
             }
         }
