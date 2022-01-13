@@ -129,6 +129,10 @@ public class Board implements WorldState {
 
         Board o = (Board) y;
 
+        if (size() != o.size()) {
+            return false;
+        }
+
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (tileAt(i, j) != o.tileAt(i, j)) {
@@ -138,6 +142,11 @@ public class Board implements WorldState {
         }
 
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return size * 100000 + hamming() * manhattan();
     }
 
     /** Returns the string representation of the board. 
