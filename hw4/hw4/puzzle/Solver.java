@@ -5,8 +5,7 @@ import edu.princeton.cs.algs4.MinPQ;
 import java.util.ArrayDeque;
 
 public class Solver {
-    private SearchNode ans;
-    private ArrayDeque<WorldState> sequence = new ArrayDeque<>();
+    private ArrayDeque<WorldState> solution = new ArrayDeque<>();
 
     public Solver(WorldState initial) {
         MinPQ<SearchNode> moveSequence = new MinPQ<>();
@@ -17,12 +16,11 @@ public class Solver {
             SearchNode bms = moveSequence.delMin();    //best move sequence
 
             if (bms.estimatedDistanceToGoal == 0) {
-                ans = bms;
-                while (ans.prev != null) {
-                    sequence.push(ans.world);
-                    ans = ans.prev;
+                while (bms.prev != null) {
+                    solution.push(bms.world);
+                    bms = bms.prev;
                 }
-                sequence.push(ans.world);
+                solution.push(bms.world);
                 return;
             }
 
@@ -38,11 +36,11 @@ public class Solver {
     }
 
     public int moves() {
-        return sequence.size() - 1;
+        return solution.size() - 1;
     }
 
     public Iterable<WorldState> solution() {
-        return sequence;
+        return solution;
     }
 
     private class SearchNode implements Comparable<SearchNode> {
