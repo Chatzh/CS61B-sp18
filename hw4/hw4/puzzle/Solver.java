@@ -6,6 +6,7 @@ import java.util.ArrayDeque;
 
 public class Solver {
     private SearchNode ans;
+    private ArrayDeque<WorldState> sequence = new ArrayDeque<>();
 
     public Solver(WorldState initial) {
         MinPQ<SearchNode> moveSequence = new MinPQ<>();
@@ -17,6 +18,11 @@ public class Solver {
 
             if (bms.estimatedDistanceToGoal == 0) {
                 ans = bms;
+                while (ans.prev != null) {
+                    sequence.push(ans.world);
+                    ans = ans.prev;
+                }
+                sequence.push(ans.world);
                 return;
             }
 
@@ -32,17 +38,10 @@ public class Solver {
     }
 
     public int moves() {
-        return ans.distance;
+        return sequence.size() - 1;
     }
 
     public Iterable<WorldState> solution() {
-        ArrayDeque<WorldState> sequence = new ArrayDeque<>();
-        while (ans.prev != null) {
-            sequence.push(ans.world);
-            ans = ans.prev;
-        }
-
-        sequence.push(ans.world);
         return sequence;
     }
 
